@@ -1,105 +1,379 @@
-\documentclass[10pt]{article}
-\usepackage{geometry}
-\geometry{a4paper, margin=1in}
-\usepackage{enumitem}
-\usepackage{hyperref}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt}
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Yuri Matsumura's CV},
+    pdfauthor={Yuri Matsumura},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+\usepackage{etoolbox}
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0cm} % set column seperation
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{\small Yuri Matsumura - Page \thepage{} of \pageref*{LastPage}}
+}{}{} % replace number by desired string
+\makeatother
+\pagestyle{customFooterStyle}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.5 cm
+}{
+    % bottom space:
+    0.3 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\circ$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0.0 cm,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.8}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in \today}\hspace{\widthof{Last updated in \today}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
 
 \begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
 
-\begin{center}
-    {\LARGE \textbf{Yuri MATSUMURA}} \\
-\end{center}
+    \placelastupdatedtext
+    \begin{header}
+        \textbf{\fontsize{24 pt}{24 pt}\selectfont Yuri MATSUMURA}
 
-\vspace{1mm}
-Email: \href{mailto:Yuri.Matsumura@rice.edu}{Yuri.Matsumura@rice.edu} \\
-Homepage: \href{https://sites.google.com/view/yurimatsumura/}{https://sites.google.com/view/yurimatsumura/} \\
-LinkedIn: \href{https://www.linkedin.com/in/yuri-matsumura-2ab0681b8}{www.linkedin.com/in/yuri-matsumura-2ab0681b8} \\
-Phone: +1 (281) 777 1076
+        \vspace{0.3 cm}
 
-\vspace{10pt}
+        \normalsize
+        \mbox{\hrefWithoutArrow{mailto:yuru.matsumura23@gmail.com}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}yuru.matsumura23@gmail.com}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://sites.google.com/view/yurimatsumura/}{\color{black}{\footnotesize\faLink}\hspace*{0.13cm}sites.google.com/view/yurimatsumura}}%
+        \kern 0.25 cm%
+    \end{header}
 
-\textbf{RESEARCH INTERESTS} \\
-Empirical Industrial Organization, Applied Microeconomics, Competition Policy
+    \vspace{0.3 cm}
 
-\vspace{10pt}
+    \section{RESEARCH INTERESTS}
+    \begin{onecolentry}
+        Empirical Industrial Organization, Applied Microeconomics, Competition Policy
+    \end{onecolentry}
 
-\textbf{EDUCATION} \\
-Ph.D. in Economics, Rice University \hfill 2019 - 2025 (expected) \\
-M.A. in Economics, The University of Tokyo \hfill 2018 \\
-B.A. in Economics, Osaka University \hfill 2016
+    \section{EMPLOYMENT}
+    \begin{twocolentry}{
+        \textit{Sep, 2025 - Present}}
+        \textbf{Japanese Fair Trade Commission},
+        \textit{Economist}
+    \end{twocolentry}
 
-\vspace{10pt}
 
-\textbf{HONORS} \\
-Dissertation Research Improvement Grants, Rice University \hfill 2023 - 2024 \\
-Rice Fellowship, Rice University \hfill 2019 - 2024
+    \section{EDUCATION}
+    \begin{twocolentry}{
+        \textit{May, 2025}}
+        \textbf{Rice University},
+        \textit{Ph.D. in Economics}
+    \end{twocolentry}
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Committee: Jeremy Fox (Advisor), Yunmi Kong, Mallesh Pai, Arun Goparakrishnan
+        \end{highlights}
+    \end{onecolentry}
+    \vspace{0.10 cm}
+    \begin{twocolentry}{
+        \textit{March, 2018}}
+        \textbf{The University of Tokyo},       
+        \textit{M.A. in Economics}
+    \end{twocolentry}
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Advisor: Akihiko Matsui
+        \end{highlights}
+    \end{onecolentry}
+    \vspace{0.10 cm}
+    \begin{twocolentry}{
+        \textit{March, 2016}}
+        \textbf{Osaka University},
+        \textit{B.A. in Economics}
+    \end{twocolentry}
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Advisor: Shingo Ishiguro
+        \end{highlights}
+    \end{onecolentry}
 
-\vspace{10pt}
+    \section{HONORS}
+    \begin{samepage}
+        \begin{twocolentry}{
+            2023 - 2024
+        }
+            \textbf{Dissertation Research Improvement Grants}
+            \vspace{0.10 cm}
+            \begin{onecolentry}
+                \begin{highlights}
+                    \item Rice University, School of Social Sciences
+                \end{highlights}
+            \end{onecolentry}
+        \end{twocolentry}
+    \end{samepage}
+    \vspace{0.10 cm}
+    \begin{samepage}
+        \begin{twocolentry}{
+            2019 - 2024
+        }
+            \textbf{Rice Fellowship}
+            \vspace{0.10 cm}
+            \begin{onecolentry}
+                \begin{highlights}
+                    \item Rice University, Department of Economics
+                \end{highlights}
+            \end{onecolentry}
+        \end{twocolentry}
+    \end{samepage}
 
-\textbf{PUBLICATIONS} \\
-“Resolving the Conflict on Conduct Parameter Estimation in Homogeneous Goods Markets between Bresnahan (1982) and Perloff and Shen (2012)”, with Suguru Otani, \textit{Economics Letters}, 2023 \\
-“Dissolution Risk and Legislative Effort of Politicians”, with Yumi Koh and Ken Onishi, \textit{Electoral Studies}, 2022
+    \section{PUBLICATIONS}
+    \begin{samepage}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Resolving the Conflict on Conduct Parameter Estimation in Homogeneous Goods Markets between Bresnahan (1982) and Perloff and Shen (2012)
+                \begin{highlights}
+                    \item With Suguru Otani, \textit{Economics Letters}, Volume 229, 111193
+                \end{highlights}
+            \end{highlights}
+        \end{onecolentry}
+    \end{samepage}
+    \vspace{0.10 cm}
+    \begin{samepage}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Dissolution Risk and Legislative Effort of Politicians
+                \begin{highlights}
+                    \item With Yumi Koh and Ken Onishi, \textit{Electoral Studies}, Volume 78, 102492
+                \end{highlights}
+            \end{highlights}
+        \end{onecolentry}
+    \end{samepage}
 
-\vspace{10pt}
+    \section{WORKING PAPERS}
+    \begin{samepage}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Evaluating Cartel Impact in Electricity Procurement (Job Market Paper)
+            \end{highlights}
+        \end{onecolentry}
+    \end{samepage}
+    \vspace{0.10 cm}
+    \begin{samepage}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Conduct Parameter Estimation in Homogeneous Goods Markets with Equilibrium Existence and Uniqueness Conditions: The Case of Log-linear Specification
+                \begin{highlights}
+                    \item With Suguru Otani, \textit{Revision requested at Economics Letters}
+                \end{highlights}
+            \end{highlights}
+        \end{onecolentry}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Identification of Firm Conduct in Homogeneous Product Markets
+                \begin{highlights}
+                    \item With Suguru Otani
+                \end{highlights}
+            \end{highlights}
+        \end{onecolentry}
+    \end{samepage}
 
-\textbf{JOB MARKET PAPER}\\
-“Evaluating Cartel Impact in Electricity Procurement”\\
-Abstract:  This paper examines the impact of a market allocation cartel in the Japanese electricity retail market, active from 2018 to 2020. During this period, four incumbents restricted competition by avoiding entry into each other's regions. Analyzing electricity procurement auctions from both competitive and cartel periods, I find that cartel members reduced their participation rates and submitted complementary bids in other regions while increasing bid levels within their own regions, leading to winning bids rising by up to 9\% despite continued competition with non-cartel firms. 
-Counterfactual simulations using a model of auctions with asymmetric, risk-averse bidders suggest that without the cartel, continued market entry by these firms could have lowered winning bids by up to 5.5\% and reduced winning costs by 3.4\%. 
-While increased competition led to minor inefficiencies due to asymmetry among bidders, the cartel's exclusionary practices caused inefficiencies of up to 26\%.
-Additionally, shifts toward nuclear energy generation were associated with lower procurement costs. 
-These findings highlight the financial burden of cartel behavior and the benefits of fostering market competition for public institutions.
+    \section{WORK IN PROGRESS}
+    \begin{onecolentry}
+        "A New GPV Estimator Using Bernstein Polynomial"
+    \end{onecolentry}
 
-\vspace{10pt}
 
-\textbf{WORK IN PROGRESS} \\
-“An MPEC Estimator for Conduct Parameter Estimation in Homogeneous Goods Markets”, with Suguru Otani\\
-“A New GPV Estimator Using Bernstein Polynomial” \\
-“Identification of Firm Conduct in Homogeneous Product Markets” with Suguru Otani
+    \section{TEACHING AND RESEARCH EXPERIENCES}
+    \textbf{Teaching Assistant}
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item \begin{twocolentry}{
+                \textit{2020 - 2024}}
+                \textit{Rice University}
+            \end{twocolentry}
+            \begin{highlights}
+                \item Applied Microeconomics (Undergraduate), Applied Econometrics (Undergraduate), Mathematical Economics (Undergraduate), Macroeconomics (Graduate), Matching and Market Design (Graduate)
+            \end{highlights}
+            \item \begin{twocolentry}{
+                \textit{2017 - 2018}}
+                \textit{The University of Tokyo}
+            \end{twocolentry}
+            \begin{highlights}
+                \item Industrial Organization (Undergraduate, Economics), Microeconomics (Graduate, Graduate School of Public Policy)
+            \end{highlights}
+            \item \begin{twocolentry}{
+                \textit{2018}}
+                \textit{International Christian University}
+            \end{twocolentry}
+            \begin{highlights}
+                \item Microeconomics (Undergraduate)
+            \end{highlights}
+        \end{highlights}
+    \end{onecolentry}
 
-\vspace{10pt}
+    \textbf{Research Assistant}
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item \begin{twocolentry}{
+                \textit{2021 - 2022}}
+                For Professor Jeremy Fox at \textit{Rice University}
+            \end{twocolentry}
+            \item \begin{twocolentry}{
+                \textit{2018 - 2019}}
+                For Professor Daiji Kawaguchi at \textit{The University of Tokyo}
+            \end{twocolentry}
+            \item \begin{twocolentry}{
+                \textit{2016 - 2018}}
+                For Professor Mototsugu Shintani at \textit{The University of Tokyo}
+            \end{twocolentry}
+        \end{highlights}
+    \end{onecolentry}
 
-\textbf{TEACHING AND RESEARCH EXPERIENCES} \\
-Teaching Assistant at Rice University: Applied Microeconomics (U), Applied Econometrics (U),\\
-Mathematical Economics (U), Macroeconomics (G), Matching and Market Design (G) \hfill 2020 - 2024\\
-Teaching Assistant at The University of Tokyo: Industrial Organization (U, Economics), Microeconomics (G, Graduate School of Public Policy) \hfill  2017 - 2018\\
-Teaching Assistant at International Christian University: Microeconomics (U) \hfill 2018\\
-Research Assistant for Professor Jeremy Fox, Rice University\hfill 2021 - 2022\\
-Research Assistant for Professor Daiji Kawaguchi, The University of Tokyo \hfill 2018 - 2019\\
-Research Assistant for Professor Mototsugu Shintani, The University of Tokyo \hfill 2016 - 2018
+    \section{ACADEMIC SERVICE}
+    \begin{onecolentry}
+        Referee: \textit{Legislative Studies Quarterly}
+    \end{onecolentry}
 
-\vspace{10pt}
+    \section{SEMINARS AND PRESENTATIONS}
+    \begin{onecolentry}
+        2024: Brown Bag Workshop (Rice University)
+    \end{onecolentry}
+    \begin{onecolentry}
+        2018: Microeconomics Workshop (The University of Tokyo), Japanese Economic Association, Spring meeting (University of Hyogo), Junior IO Workshop (The University of Tokyo)
+    \end{onecolentry}
 
-\textbf{ACADEMIC SERVICE} \\
-Referee: \textit{Legislative Studies Quarterly}
-
-\vspace{10pt}
-
-\textbf{SEMINARS AND PRESENTATIONS} \\
-2024: Brown Bag Workshop (Rice University) \\
-2018: Microeconomics Workshop (The University of Tokyo), Japanese Economic Association, Spring meeting (University of Hyogo), Junior IO Workshop (The University of Tokyo)
-
-\vspace{10pt}
-
-\textbf{OTHERS} \\
-Programming Skills: Julia, R, MATLAB, Python, Stata \\
-Languages: English, Japanese (native)
-
-\vspace{10pt}
-
-\textbf{REFERENCES} \\
-Professor Jeremy Fox (Advisor) \\
-Department of Economics, Rice University \\
-Email: \href{mailto:jeremyfox@gmail.com}{jeremyfox@gmail.com} \\
-
-Professor Yunmi Kong \\
-Department of Economics, Rice University \\
-Email: \href{mailto:yunmi.kong.01@gmail.com}{yunmi.kong.01@gmail.com} \\
-
-Professor Mallesh Pai \\
-Department of Economics, Rice University \\
-Email: \href{mailto:mallesh.pai@rice.edu}{mallesh.pai@rice.edu}
+    \section{OTHERS}
+    \begin{onecolentry}
+        Programming Skills: Julia, R, MATLAB, Python, Stata
+    \end{onecolentry}
+    \begin{onecolentry}
+        Languages: English, Japanese (native)
+    \end{onecolentry}
 
 \end{document}
