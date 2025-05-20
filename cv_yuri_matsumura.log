@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2024.3.15)  20 MAY 2025 12:25
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2024.3.15)  20 MAY 2025 18:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -430,11 +430,11 @@ Package lastpage Info: Please have a look at the pageslts package at
 AED: lastpage setting LastPage
 [2] (./cv_yuri_matsumura.aux) ) 
 Here is how much of TeX's memory you used:
- 13462 strings out of 476191
- 209000 string characters out of 5812072
+ 13460 strings out of 476191
+ 208952 string characters out of 5812072
  555035 words of memory out of 5000000
- 34028 multiletter control sequences out of 15000+600000
- 470169 words of font info for 43 fonts, out of 8000000 for 9000
+ 34027 multiletter control sequences out of 15000+600000
+ 470161 words of font info for 42 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  60i,10n,77p,339b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
 
