@@ -56,9 +56,6 @@
 \setlength{\columnsep}{0cm} % set column seperation
 \makeatletter
 \let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
-\patchcmd{\ps@customFooterStyle}{\thepage}{
-    \color{gray}\textit{\small Yuri Matsumura - Page \thepage{} of \pageref*{LastPage}}
-}{}{} % replace number by desired string
 \makeatother
 \pagestyle{customFooterStyle}
 
