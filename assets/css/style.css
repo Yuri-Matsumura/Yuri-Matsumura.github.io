@@ -38,6 +38,7 @@ html[lang="ja"] body {
 }
 
 .latin,
+.site-name,
 .site-nav {
   font-family: "EB Garamond", Garamond, "Cormorant Garamond", Baskerville, serif;
 }
