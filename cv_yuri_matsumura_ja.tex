@@ -1,0 +1,325 @@
+% !TEX program = xelatex
+\documentclass[10pt, letterpaper]{article}
+
+% Japanese support (XeLaTeX required):
+\usepackage{fontspec}
+\usepackage{zxjatype}
+\usepackage[hiragino]{zxjafont}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot,
+    top=2cm,
+    bottom=2cm,
+    left=2cm,
+    right=2cm,
+    footskip=1.0cm,
+]{geometry}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{primaryColor}{RGB}{0, 79, 144}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage[
+    pdftitle={松村由里の履歴書},
+    pdfauthor={松村由里},
+    pdfcreator={LaTeX},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref}
+\usepackage[pscoord]{eso-pic}
+\usepackage{calc}
+\usepackage{bookmark}
+\usepackage{changepage}
+\usepackage{paracol}
+\usepackage{ifthen}
+\usepackage{needspace}
+\usepackage{etoolbox}
+
+% Settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt}
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\columnsep}{0cm}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\normalsize}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{-1pt}{0.5cm}{0.3cm}
+
+\renewcommand\labelitemi{$\circ$}
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10cm,
+        parsep=0.10cm,
+        partopsep=0pt,
+        itemsep=0.0cm,
+        leftmargin=0.4cm + 10pt
+    ]
+}{
+    \end{itemize}
+}
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{0.2cm}{0.2cm}
+}{
+    \end{adjustwidth}
+}
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \end{adjustwidth}
+}
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.8}
+}{
+    \par\kern\topsep
+}
+
+\newcommand{\placelastupdatedtext}{
+  \AddToShipoutPictureFG*{
+    \put(
+        \LenToUnit{\paperwidth-2cm-0.2cm+0.05cm},
+        \LenToUnit{\paperheight-1.0cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{最終更新: \today}
+    }}}
+  }
+}
+
+\let\hrefWithoutArrow\href
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    \placelastupdatedtext
+    \begin{header}
+        \textbf{\fontsize{24pt}{24pt}\selectfont 松村 悠里 (Yuri MATSUMURA)}
+
+        \vspace{0.3cm}
+
+        \normalsize
+        \mbox{\hrefWithoutArrow{mailto:yuri.matsumura23@gmail.com}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}yuri.matsumura23@gmail.com}}%
+        \kern 0.25cm%
+        \AND%
+        \kern 0.25cm%
+        \mbox{\hrefWithoutArrow{https://sites.google.com/view/yurimatsumura/}{\color{black}{\footnotesize\faLink}\hspace*{0.13cm}sites.google.com/view/yurimatsumura}}%
+        \kern 0.25cm%
+    \end{header}
+
+    \vspace{0.3cm}
+
+    \section{研究分野}
+    \begin{onecolentry}
+        実証産業組織論、応用ミクロ経済学、競争政策
+    \end{onecolentry}
+
+    \section{職歴}
+    \begin{twocolentry}{\textit{2025年9月--現在}}
+        \textbf{公正取引委員会}、エコノミスト
+    \end{twocolentry}
+
+    \section{学歴}
+    \begin{twocolentry}{\textit{2025年5月}}
+        \textbf{Rice University}、博士(経済学)
+    \end{twocolentry}
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item 審査委員: Jeremy Fox(指導教員)、Yunmi Kong、Mallesh Pai、Arun Gopalakrishnan
+        \end{highlights}
+    \end{onecolentry}
+    \vspace{0.10cm}
+    \begin{twocolentry}{\textit{2018年3月}}
+        \textbf{東京大学}、修士(経済学)
+    \end{twocolentry}
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item 指導教員: 松井彰彦
+        \end{highlights}
+    \end{onecolentry}
+    \vspace{0.10cm}
+    \begin{twocolentry}{\textit{2016年3月}}
+        \textbf{大阪大学}、学士(経済学)
+    \end{twocolentry}
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item 指導教員: 石黒真吾
+        \end{highlights}
+    \end{onecolentry}
+
+    \section{受賞・助成金}
+    \begin{samepage}
+        \begin{twocolentry}{\textit{2023--2024}}
+            \textbf{Dissertation Research Improvement Grants}
+            \vspace{0.10cm}
+            \begin{onecolentry}
+                \begin{highlights}
+                    \item Rice University, School of Social Sciences
+                \end{highlights}
+            \end{onecolentry}
+        \end{twocolentry}
+    \end{samepage}
+    \vspace{0.10cm}
+    \begin{samepage}
+        \begin{twocolentry}{\textit{2019--2024}}
+            \textbf{Rice Fellowship}
+            \vspace{0.10cm}
+            \begin{onecolentry}
+                \begin{highlights}
+                    \item Rice University, Department of Economics
+                \end{highlights}
+            \end{onecolentry}
+        \end{twocolentry}
+    \end{samepage}
+
+    \section{論文（査読付き）}
+    \begin{samepage}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item ``Conduct Parameter Estimation in Homogeneous Goods Markets with Equilibrium Existence and Uniqueness Conditions: The Case of Log-linear Specification'', with Suguru Otani, \textit{Economics Bulletin}, 2025 Volume 45 Issue 4, 1755--1761
+            \end{highlights}
+        \end{onecolentry}
+    \end{samepage}
+    \vspace{0.10cm}
+    \begin{samepage}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item ``Resolving the Conflict on Conduct Parameter Estimation in Homogeneous Goods Markets between Bresnahan (1982) and Perloff and Shen (2012)'', with Suguru Otani, \textit{Economics Letters}, 2023 Volume 229, 111193
+            \end{highlights}
+        \end{onecolentry}
+    \end{samepage}
+    \vspace{0.10cm}
+    \begin{samepage}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item ``Dissolution Risk and Legislative Effort of Politicians'', with Yumi Koh and Ken Onishi, \textit{Electoral Studies}, 2022 Volume 78, 102492
+            \end{highlights}
+        \end{onecolentry}
+    \end{samepage}
+
+    \section{ワーキングペーパー}
+    \begin{samepage}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Evaluating Cartel Impact in Electricity Procurement (Job Market Paper)
+            \end{highlights}
+        \end{onecolentry}
+    \end{samepage}
+    \vspace{0.10cm}
+    \begin{samepage}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Revisiting Identification of Firm Conduct in Homogeneous Product Markets
+                \begin{highlights}
+                    \item with Suguru Otani
+                \end{highlights}
+            \end{highlights}
+        \end{onecolentry}
+    \end{samepage}
+
+    \section{進行中の研究}
+    \begin{onecolentry}
+        ``A New GPV Estimator using Bernstein Polynomial''
+    \end{onecolentry}
+
+    \section{教育・研究経験}
+    \textbf{講師}
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item \begin{twocolentry}{\textit{2026}}
+                公正取引委員会
+            \end{twocolentry}
+            \begin{highlights}
+                \item 新規採用職員研修 (ミクロ経済学)
+            \end{highlights}
+        \end{highlights}
+    \end{onecolentry}
+
+    \textbf{ティーチングアシスタント}
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item \begin{twocolentry}{\textit{2020--2024}}
+                Rice University
+            \end{twocolentry}
+            \begin{highlights}
+                \item Applied Microeconomics (Undergraduate), Applied Econometrics (Undergraduate), Mathematical Economics (Undergraduate), Macroeconomics (Graduate), Matching and Market Design (Graduate)
+            \end{highlights}
+            \item \begin{twocolentry}{\textit{2017--2018}}
+                \textit{東京大学}
+            \end{twocolentry}
+            \begin{highlights}
+                \item 産業組織論(学部、経済学部)、ミクロ経済学(大学院、公共政策大学院)
+            \end{highlights}
+            \item \begin{twocolentry}{\textit{2018}}
+                \textit{国際基督教大学}
+            \end{twocolentry}
+            \begin{highlights}
+                \item ミクロ経済学(学部)
+            \end{highlights}
+        \end{highlights}
+    \end{onecolentry}
+
+    \textbf{リサーチアシスタント}
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item \begin{twocolentry}{\textit{2021--2022}}
+                Rice University Jeremy Fox 教授
+            \end{twocolentry}
+            \item \begin{twocolentry}{\textit{2018--2019}}
+                東京大学 川口大司教授
+            \end{twocolentry}
+            \item \begin{twocolentry}{\textit{2016--2018}}
+                東京大学 新谷元嗣教授
+            \end{twocolentry}
+        \end{highlights}
+    \end{onecolentry}
+
+    \section{査読経験}
+    \begin{onecolentry}
+        \textit{Legislative Studies Quarterly}
+    \end{onecolentry}
+
+    \section{セミナー・発表}
+    \begin{onecolentry}
+        2026年: CPRCセミナー (競争政策研究センター)
+    \end{onecolentry}
+    \begin{onecolentry}
+        2024年: Brown Bag Workshop (Rice University)
+    \end{onecolentry}
+    \begin{onecolentry}
+        2018年: ミクロ経済学ワークショップ (東京大学)、日本経済学会春季大会 (兵庫県立大学)、ジュニアIOワークショップ (東京大学)
+    \end{onecolentry}
+
+    \section{その他}
+    \begin{onecolentry}
+        プログラミングスキル: Julia、R、MATLAB、Python、Stata
+    \end{onecolentry}
+    \begin{onecolentry}
+        言語: 英語、日本語(母語)
+    \end{onecolentry}
+
+\end{document}
