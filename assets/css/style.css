@@ -107,12 +107,13 @@ a:focus-visible {
 }
 
 .content {
-  margin-left: calc(var(--sidebar-width) + 68px);
-  padding: var(--content-top-spacer) 48px 80px 0;
+  margin-left: var(--sidebar-width);
+  padding: var(--content-top-spacer) 48px 80px;
 }
 
 .content-inner {
   width: min(100%, var(--content-width));
+  margin: 0 auto;
 }
 
 .introduction {
