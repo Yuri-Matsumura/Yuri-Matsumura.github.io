@@ -5,10 +5,11 @@
   --link-hover: #315c7b;
 
   --sidebar-width: 184px;
-  --content-width: 900px;
-
+  --content-width: 780px;
   --content-top-spacer: 88px;
 }
+
+
 
 * {
   box-sizing: border-box;
@@ -115,6 +116,7 @@ a:focus-visible {
   width: min(100%, var(--content-width));
   margin: 0 auto;
 }
+
 
 .introduction {
   margin: 0;
