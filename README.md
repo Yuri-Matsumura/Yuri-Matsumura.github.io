@@ -1,6 +1,6 @@
 # Yuri Matsumura — GitHub Pages site
 
-https://yuri-matsumura.github.io/index.html
+https://yuri-matsumura.github.io
 
 ## File layout
 
