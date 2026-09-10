@@ -1,4 +1,17 @@
-# Yuri Matsumura Website Content
+# Yuri Matsumura — Website / CV Master Content
+
+## Usage
+
+This file is the master source for updating the personal website and CV.
+
+* `WEBSITE` sections contain information that may appear on the public website.
+* `CV ONLY` sections contain information that should normally remain only in the CV.
+* When updating the website HTML, do not automatically add information from `CV ONLY`.
+* When information differs between the website and the CV, treat the latest manually updated `WEBSITE` information as authoritative unless otherwise specified.
+
+---
+
+# WEBSITE
 
 ## Site Structure
 
@@ -51,6 +64,21 @@ We revisit the identification of the conduct parameter in homogeneous goods mark
 
 * Presentation information forthcoming.
 
+
+### The Shape of Agreement: Focal Points in Bidding Rings
+
+* Coauthor : Jun Nakabayashi
+
+#### Abstract
+
+TBA
+
+
+#### Presentations
+
+* Summer Workshop Economic Theory @ Otaru, Aug 2026.
+
+
 ---
 
 ## Publications
@@ -91,9 +119,9 @@ We revisit the identification of the conduct parameter in homogeneous goods mark
 
 ## Work in Progress
 
-### A Project on Focal Points in Bidding Rings
+### TBA
 
-* Coauthor: Jun Nakabayashi
+
 
 ---
 
@@ -114,13 +142,163 @@ Email: [yuri.matsumura23@gmail.com](mailto:yuri.matsumura23@gmail.com)
 
 ## 研究分野
 
-* 実証産業組織論，応用ミクロ経済学，競争政策
+* 実証産業組織論
+* 応用ミクロ経済学
+* 競争政策
 
 ---
 
 ## 経歴
 
 * 2026年〜　公正取引委員会経済分析室　エコノミスト
-* 2025年　　Rice University, Ph.D. in Economics
-* 2018年　　東京大学大学院経済学研究科 修士課程修了
-* 2016年　　大阪大学経済学部経済・経営学科卒業
+* 2025年　Rice University, Ph.D. in Economics
+* 2018年　東京大学大学院経済学研究科 修士課程修了
+* 2016年　大阪大学経済学部経済・経営学科卒業
+
+---
+
+# CV ONLY
+
+The following information is retained for CV updates and should not automatically be added to the website.
+
+## Education Details
+
+### Rice University
+
+* Ph.D. in Economics, May 2025
+* Committee:
+
+  * Jeremy Fox (Advisor)
+  * Yunmi Kong
+  * Mallesh Pai
+  * Arun Gopalakrishnan
+
+### The University of Tokyo
+
+* M.A. in Economics, March 2018
+* Advisor: Akihiko Matsui
+
+### Osaka University
+
+* B.A. in Economics, March 2016
+* Advisor: Shingo Ishiguro
+
+---
+
+## Honors
+
+### Dissertation Research Improvement Grants
+
+* Rice University, School of Social Sciences
+* 2023–2024
+
+### Rice Fellowship
+
+* Rice University, Department of Economics
+* 2019–2024
+
+---
+
+## Teaching Experience
+
+### Rice University
+
+* Teaching Assistant, 2020–2024
+* Courses:
+
+  * Applied Microeconomics (Undergraduate)
+  * Applied Econometrics (Undergraduate)
+  * Mathematical Economics (Undergraduate)
+  * Macroeconomics (Graduate)
+  * Matching and Market Design (Graduate)
+
+### The University of Tokyo
+
+* Teaching Assistant, 2017–2018
+* Courses:
+
+  * Industrial Organization (Undergraduate, Economics)
+  * Microeconomics (Graduate, Graduate School of Public Policy)
+
+### International Christian University
+
+* Teaching Assistant, 2018
+* Course:
+
+  * Microeconomics (Undergraduate)
+
+---
+
+## Research Experience
+
+### Rice University
+
+* Research Assistant for Professor Jeremy Fox
+* 2021–2022
+
+### The University of Tokyo
+
+* Research Assistant for Professor Daiji Kawaguchi
+
+* 2018–2019
+
+* Research Assistant for Professor Mototsugu Shintani
+
+* 2016–2018
+
+---
+
+## Academic Service
+
+* Referee:
+
+  * Legislative Studies Quarterly
+
+---
+
+## Seminars and Presentations
+
+### 2026
+
+* Summer Workshop Economics Theory (SWET@Otaru)
+
+### 2025
+
+* CPRC Seminar, Japan Fair Trade Commission
+
+### 2024
+
+* Brown Bag Workshop, Rice University
+
+### 2018
+
+* Microeconomics Workshop, The University of Tokyo
+* Japanese Economic Association, Spring Meeting, University of Hyogo
+* Junior IO Workshop, The University of Tokyo
+
+---
+
+## Skills
+
+### Programming
+
+* Julia
+* R
+* MATLAB
+* Python
+* Stata
+
+### Languages
+
+* English
+* Japanese (native)
+
+---
+
+# Update Notes
+
+Use this section for temporary notes about future website/CV revisions.
+
+## Pending Website Updates
+
+* None.
